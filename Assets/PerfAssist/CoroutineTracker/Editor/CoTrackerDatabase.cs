@@ -10,11 +10,11 @@ public class CoroutineInfo
     public List<KeyValuePair<float, float>> executions = new List<KeyValuePair<float,float>>();
 }
 
-public class CoroutineEditorDatabase 
+public class CoTrackerDatabase 
 {
     public static float SnapshotInterval = 1.0f;
 
-    public CoroutineEditorDatabase()
+    public CoTrackerDatabase()
     {
         CoGraphUtil.InitParams(CoGraphUtil.GName_Creation, 80, new Color(0.4f, 0.7f, 0.9f, 0.9f));
         CoGraphUtil.InitParams(CoGraphUtil.GName_Termination, 80, new Color(0.4f, 0.7f, 0.9f, 0.9f));

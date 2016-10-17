@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public delegate void CoGraphSelectionHandler(int selectionIndex);
 
-public class Panel_CoGraph 
+public class CoTrackerPanel_Graph 
 {
     static Vector2 mScrollPos;
     static float mWidth;
@@ -41,7 +41,7 @@ public class Panel_CoGraph
         }
     }
 
-    public static Panel_CoGraph Instance = new Panel_CoGraph();
+    public static CoTrackerPanel_Graph Instance = new CoTrackerPanel_Graph();
 
     static void InitializeStyles()
     {

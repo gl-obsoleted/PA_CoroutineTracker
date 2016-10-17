@@ -1,10 +1,9 @@
-﻿using UnityEngine;
-using System.Collections;
-using UnityEditor;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
+using UnityEditor;
+using UnityEngine;
 
-public class CoroutineTrackerWindow : EditorWindow
+public class CoTrackerWindow : EditorWindow
 {
     public static float ToolbarHeight = 30.0f;
     public static float DataTableWidth = 600.0f;
@@ -23,12 +22,12 @@ public class CoroutineTrackerWindow : EditorWindow
 
     float _selectedSnapshotTime = 0.0f;
 
-    CoroutineEditorDatabase _database;
+    CoTrackerDatabase _database;
 
     [MenuItem("Window/CoroutineTracker")]
     static void Create()
     {
-        CoroutineTrackerWindow w = EditorWindow.GetWindow<CoroutineTrackerWindow>();
+        CoTrackerWindow w = EditorWindow.GetWindow<CoTrackerWindow>();
         w.Show();
 
         if (w != null)
@@ -48,7 +47,7 @@ public class CoroutineTrackerWindow : EditorWindow
     {
         _selectedSnapshotTime = CoGraphUtil.GetSnapshotTime(selectionIndex);
         List<CoTableEntry> entries = _database.PopulateEntries(_selectedSnapshotTime);
-        Panel_CoTable.Instance.RefreshEntries(entries);
+        CoTrackerPanel_Table.Instance.RefreshEntries(entries);
     }
 
     void OnEnable()
@@ -67,10 +66,10 @@ public class CoroutineTrackerWindow : EditorWindow
         {
             GraphIt.Instance = new GraphIt();
 
-            _database = new CoroutineEditorDatabase();
+            _database = new CoTrackerDatabase();
             RuntimeCoroutineStats.Instance.OnBroadcast += _database.Receive;
-            Panel_CoGraph.Instance.SelectionChanged += GraphPanel_SelectionChanged;
-            Panel_CoTable.Instance.OnCoroutineSelected += TablePanel_CoroutineSelected;
+            CoTrackerPanel_Graph.Instance.SelectionChanged += GraphPanel_SelectionChanged;
+            CoTrackerPanel_Table.Instance.OnCoroutineSelected += TablePanel_CoroutineSelected;
         }
 
         //GUILayout.BeginHorizontal();
@@ -83,7 +82,7 @@ public class CoroutineTrackerWindow : EditorWindow
             GUILayout.BeginArea(r);
             {
                 _scrollPositionLeft = GUILayout.BeginScrollView(_scrollPositionLeft, GUIStyle.none, GUI.skin.verticalScrollbar);
-                Panel_CoGraph.Instance.DrawGraphs(r);
+                CoTrackerPanel_Graph.Instance.DrawGraphs(r);
                 GUILayout.EndScrollView();
             }
             GUILayout.EndArea();
@@ -96,7 +95,7 @@ public class CoroutineTrackerWindow : EditorWindow
             GUILayout.BeginArea(r_upper);
             {
                 _scrollRightUpper = GUILayout.BeginScrollView(_scrollRightUpper, GUIStyle.none, GUI.skin.verticalScrollbar);
-                Panel_CoTable.Instance.DrawTable();
+                CoTrackerPanel_Table.Instance.DrawTable();
                 GUILayout.EndScrollView();
             }
             GUILayout.EndArea();
@@ -134,7 +133,7 @@ public class CoroutineTrackerWindow : EditorWindow
         {
             string sel = "";
             var item = info.executions[i];
-            if (item.Key <= _selectedSnapshotTime && item.Key > _selectedSnapshotTime - CoroutineEditorDatabase.SnapshotInterval)
+            if (item.Key <= _selectedSnapshotTime && item.Key > _selectedSnapshotTime - CoTrackerDatabase.SnapshotInterval)
             {
                 sel = "(in selected snapshot)";
             }

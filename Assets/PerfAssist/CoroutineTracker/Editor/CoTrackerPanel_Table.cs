@@ -1,7 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
 using UnityEditor;
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine;
 
 public class CoTableEntry
 {
@@ -15,14 +14,14 @@ public class CoTableEntry
 
 public delegate void CoroutineSelectionHandler(int coSeqID);
 
-public class Panel_CoTable 
+public class CoTrackerPanel_Table 
 {
     GUIStyle NameTitle;
     GUIStyle NameLabel;
     GUIStyle NameLabelDark;
     GUIStyle Selected;
 
-    public static Panel_CoTable Instance = new Panel_CoTable();
+    public static CoTrackerPanel_Table Instance = new CoTrackerPanel_Table();
 
     private CoroutineSelectionHandler _onCoroutineSelected;
     public event CoroutineSelectionHandler OnCoroutineSelected
@@ -38,7 +37,7 @@ public class Panel_CoTable
         }
     }
 
-    public Panel_CoTable()
+    public CoTrackerPanel_Table()
     {
         NameTitle = new GUIStyle(EditorStyles.whiteBoldLabel);
         NameTitle.alignment = TextAnchor.MiddleCenter;
