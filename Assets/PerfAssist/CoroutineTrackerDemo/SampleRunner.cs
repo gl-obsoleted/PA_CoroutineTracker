@@ -7,18 +7,24 @@ using UnityEditor;
 
 public class SampleRunner : MonoBehaviour {
 
+    void SendEditorCommand(string cmd)
+    {
+#if UNITY_EDITOR
+        EditorWindow w = EditorWindow.GetWindow<EditorWindow>("CoTrackerWindow");
+        if (w.GetType().Name == "CoTrackerWindow")
+        {
+            w.SendEvent(EditorGUIUtility.CommandEvent(cmd));
+        }
+#endif
+    }
+
     void Start()
     {
         // bootstrapping
         CoroutineRuntimeTrackingConfig.EnableTracking = true;
         StartCoroutine(RuntimeCoroutineStats.Instance.BroadcastCoroutine());
-#if UNITY_EDITOR
-        EditorWindow w = EditorWindow.GetWindow<EditorWindow>("CoTrackerWindow");
-        if (w.GetType().Name == "CoTrackerWindow")
-        {
-            w.SendEvent(EditorGUIUtility.CommandEvent("AppStarted"));
-        }
-#endif
+
+        SendEditorCommand("AppStarted");
 
         gameObject.AddComponent<TestPluginRunner>();
 
@@ -32,7 +38,8 @@ public class SampleRunner : MonoBehaviour {
         RuntimeCoroutineTracker.InvokeStart(spawner, "Co04_PerFrame_ARG", 0.683f);
     }
 
-    void Update()
+    void OnDestroy()
     {
+        SendEditorCommand("AppDestroyed");
     }
 }
