@@ -1,0 +1,3 @@
+[submodule "Assets/PerfAssist/PA_Shared"]
+	path = Assets/PerfAssist/PA_Shared
+	url = https://gitlab.com/PerfAssist/PA_Shared.git
