@@ -1,18 +1,18 @@
 # CoroutineTracker (PerfAssist)
 
-![p1](2016-12-20-unity-coroutine-optimizing/p1.png)
+![p1](_images/p1.png)
 
 ### 功能介绍
 
 左边的四列是程序运行时所有被追踪协程的实时的启动次数，结束次数，执行次数和执行时间。
 
-![p2](2016-12-20-unity-coroutine-optimizing/p2.png)
+![p2](_images/p2.png)
 
 当点击图形上任何一个位置时，选中该时间点（秒为单位），在图形上是绿色竖条。
  
 此时右边的数据报表刷新为在这一秒中活动的所有协程的列表，如下图所示：
 
-![p3](2016-12-20-unity-coroutine-optimizing/p3.png)
+![p3](_images/p3.png)
 
 注意，该表中的数据依次为：
   
@@ -26,7 +26,7 @@
  
 当选中列表中某一个协程时，面板的右下角会显示该协程的详细信息，如下图所示：
 
-![p4](2016-12-20-unity-coroutine-optimizing/p4.png)
+![p4](_images/p4.png)
 
 这里有下面的信息：
   
@@ -37,7 +37,7 @@
  
 向下滚动，可看到该协程的完整执行流程信息，如下图所示：
  
-![p5](2016-12-20-unity-coroutine-optimizing/p5.png)
+![p5](_images/p5.png)
 
 ### 常见问题调查
 
