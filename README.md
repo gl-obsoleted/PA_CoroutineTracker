@@ -1,5 +1,9 @@
 # CoroutineTracker (PerfAssist)
 
+Check out [this page](http://gulu-dev.com/post/perf_assist/2016-12-20-unity-coroutine-optimizing) for an optimization guide of Unity coroutines.
+
+- [Unity 协程运行时的监控和优化](http://gulu-dev.com/post/perf_assist/2016-12-20-unity-coroutine-optimizing)
+
 ![p1](_images/p1.png)
 
 ### 功能介绍
